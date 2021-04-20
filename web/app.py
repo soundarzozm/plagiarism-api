@@ -25,9 +25,7 @@ def VerifyPassword(username, password):
         "username": username
     })[0]["password"]
 
-    if bcrypt.checkpw(hashed_pw, password):
-        return True
-    return False
+    return bcrypt.checkpw(password.encode("utf8"), hashed_pw)
 
 def CountTokens(username):
     num_tokens = users.find({
